@@ -1,0 +1,73 @@
+<!-- 订单详情 -->
+<view class="order-container">
+    <!-- 订单编号和下单时间，如果是旧订单就显示 -->
+    <view class="order-basic-info" wx:if="{{orderInfo}}">
+        <view class="order-time-no">
+            <view>
+                <text class="key">下单时间:</text>
+                <text class="val">{{orderInfo.create_time}}</text>
+            </view>
+            <view>
+                <text class="key">订单编号:</text>
+                <text class="order-no-txt val">{{orderInfo.order_no}}</text>
+            </view>
+        </view>
+        <view class="order-status">
+            <text>{{orderInfo.status}}</text>
+        </view>
+    </view>
+    <!-- 地址 -->
+    <view class="order-address-info">
+        <block wx:if="{{address.length > 0}}">
+            <block wx:for="{{address}}" wx:key="">
+                <view class="contact-box">
+                    <view class="contact-box-checkbox" bindtap="editAddressStatus" data-id="{{ item.id }}">
+                        <image wx:if="{{item.status == 1}}" src="../../image/icon/circle@selected.png" />
+                        <image wx:else src="../../image/icon/circle@noselected.png" />
+                    </view>
+                    <view class="contact-box-info" bindtap="editAddress" data-id="{{ item.id }}">
+                        <view class="contact">
+                            <view>
+                                <image src="../../image/icon/user.png"></image>
+                                <text class="val">{{item.userName}}</text>
+                            </view>
+                            <view class="mobile-box">
+                                <image src="../../image/icon/mobile.png"></image>
+                                <text class="val">{{item.telNumber}}</text>
+                            </view>
+                        </view>
+                        <view class="detail">{{item.address}}</view>
+                    </view>
+                </view>
+            </block>
+        </block>
+        <block wx:else>
+            <view class="add-new-address" bindtap="editAddress">
+                <text class="icon">+</text>
+                <text>添加地址</text>
+            </view>
+        </block>
+    </view>
+    <!-- 列表 -->
+    <view class="order-main">
+        <block wx:for="{{productsArr}}" wx:key="">
+            <view class="product-item">
+                <view class="item-left">
+                    <image src="{{item.image}}"></image>
+                </view>
+                <view class="item-middle">
+                    <view>{{item.title}}</view>
+                    <view>￥{{item.price}}</view>
+                </view>
+                <view class="item-right">×{{item.counts}}</view>
+            </view>
+        </block>
+    </view>
+    <!-- 结算 -->
+    <view class="footer-account-box order-accounts">
+        <view class="total-account">付款合计：￥{{account}}</view>
+        <view wx:if="{{ orderStatus === '未付款' || orderStatus == 'noOrder' }}" class="pay {{!addressInfo?'disabled':''}}" bindtap="pay">
+            去付款
+        </view>
+    </view>
+</view>

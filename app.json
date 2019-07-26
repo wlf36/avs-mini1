@@ -1,0 +1,57 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/category/category",
+    "pages/product/product",
+    "pages/cart/cart",
+    "pages/order/order",
+    "pages/user/user",
+    "pages/pay-result/pay-result"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+<<<<<<< HEAD
+    "navigationBarTitleText": "竹子商城",
+=======
+    "navigationBarTitleText": "seed海外购",
+>>>>>>> e29ea1b5b6146be9f3fbc33eab78de3e5ad692a2
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "borderStyle": "white",
+    "color": "#7A7E83",
+    "selectedColor": "#1296db",
+<<<<<<< HEAD
+    "list": [
+      {
+=======
+    "list": [{
+>>>>>>> e29ea1b5b6146be9f3fbc33eab78de3e5ad692a2
+        "pagePath": "pages/index/index",
+        "iconPath": "image/icon/home.png",
+        "selectedIconPath": "image/icon/home_selected.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/category/category",
+        "iconPath": "image/icon/add.png",
+        "selectedIconPath": "image/icon/add_selected.png",
+        "text": "分类"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "iconPath": "image/icon/cart.png",
+        "selectedIconPath": "image/icon/cart_selected.png",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "iconPath": "image/icon/me.png",
+        "selectedIconPath": "image/icon/me_selected.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

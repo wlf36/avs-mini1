@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "poster": "../../plugs/components/wxa-plugin-canvas-poster/poster/index"
+  }
+
+}

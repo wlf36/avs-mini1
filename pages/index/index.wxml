@@ -1,0 +1,116 @@
+<!-- index.wxml -->
+<!-- 幻灯展示 -->
+<swiper class="banner" indicator-dots="true" autoplay="true" interval="5000" duration="500">
+    <block wx:for="{{banner}}" wx:key="">
+        <swiper-item>
+            <navigator url="">
+                <image src="{{item.file_path}}" mode="aspectFill" />
+            </navigator>
+        </swiper-item>
+    </block>
+</swiper>
+<!-- 促销产品 -->
+<view class="product_hot">
+    <view class="product_hot__header">热卖促销</view>
+    <scroll-view scroll-x class="product_hot__body scroll">
+        <block wx:for="{{ product_tag }}" wx:key="{{ item.id }}">
+            <view class="scroll-item">
+                <navigator url="/pages/product/product?id={{ item.id }}">
+                    <view class="product_hot__image">
+                        <image src="{{ item.thumbnail}}" mode="aspectFill" />
+                    </view>
+                    <view class="product__title">{{ item.title }}</view>
+                    <view class="product__price">￥{{ item.sale_price }}</view>
+                </navigator>
+            </view>
+        </block>
+    </scroll-view>
+</view>
+<!-- 分类产品10 -->
+<view class="product_category">
+    <view class="product_category__header">魅力女士</view>
+    <view class="product_category__body">
+        <block wx:for="{{ cat_10 }}" wx:key="{{ item.id }}">
+            <view class="product">
+                <navigator url="/pages/product/product?id={{ item.id }}">
+                    <view class="product__image">
+                        <image src="{{ item.thumbnail}}" mode="aspectFill" />
+                    </view>
+                    <view class="product__footer">
+                        <view class="product__title">{{ item.title }}</view>
+                        <view class="product__description">{{ item.description }}</view>
+                        <view class="product__price">￥{{ item.sale_price }}</view>
+                    </view>
+                </navigator>
+            </view>
+        </block>
+    </view>
+</view>
+<!-- 分类产品11 -->
+<view class="product_category">
+    <view class="product_category__header">健康男士</view>
+    <view class="product_category__body">
+        <block wx:for="{{ cat_11 }}" wx:key="{{ item.id }}">
+            <view class="product">
+                <navigator url="/pages/product/product?id={{ item.id }}">
+                    <view class="product__image">
+                        <image src="{{ item.thumbnail}}" mode="aspectFill" />
+                    </view>
+                    <view class="product__footer">
+                        <view class="product__title">{{ item.title }}</view>
+                        <view class="product__description">{{ item.description }}</view>
+                        <view class="product__price">￥{{ item.sale_price }}</view>
+                    </view>
+                </navigator>
+            </view>
+        </block>
+    </view>
+</view>
+<!-- 分类产品12 -->
+<view class="product_category">
+    <view class="product_category__header">孕妇儿童</view>
+    <view class="product_category__body">
+        <block wx:for="{{ cat_12 }}" wx:key="{{ item.id }}">
+            <view class="product">
+                <navigator url="/pages/product/product?id={{ item.id }}">
+                    <view class="product__image">
+                        <image src="{{ item.thumbnail}}" mode="aspectFill" />
+                    </view>
+                    <view class="product__footer">
+                        <view class="product__title">{{ item.title }}</view>
+                        <view class="product__description">{{ item.description }}</view>
+                        <view class="product__price">￥{{ item.sale_price }}</view>
+                    </view>
+                </navigator>
+            </view>
+        </block>
+    </view>
+</view>
+<!-- 分类产品13 -->
+<view class="product_category">
+    <view class="product_category__header">美妆护肤</view>
+    <view class="product_category__body">
+        <block wx:for="{{ cat_13 }}" wx:key="{{ item.id }}">
+            <view class="product">
+                <navigator url="/pages/product/product?id={{ item.id }}">
+                    <view class="product__image">
+                        <image src="{{ item.thumbnail }}" mode="aspectFill" />
+                    </view>
+                    <view class="product__footer">
+                        <view class="product__title">{{ item.title }}</view>
+                        <view class="product__description">{{ item.description }}</view>
+                        <view class="product__price">￥{{ item.sale_price }}</view>
+                    </view>
+                </navigator>
+            </view>
+        </block>
+    </view>
+</view>
+<!-- footer -->
+<view class="weui-footer">
+    <view class="weui-footer__text">
+        <view>喜德商城</view>
+        <view>技术支持：京通网络科技有限公司</view>
+    </view>
+    <view class="weui-footer__text">Copyright © 2019 喜德商城</view>
+</view>

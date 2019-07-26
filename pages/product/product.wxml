@@ -1,0 +1,79 @@
+<!-- pages/product/show.wxml -->
+<!-- <import src="../../wxParse/wxParse.wxml" /> -->
+<import src="../../plugs/modal-view/modal-view.wxml" />
+<view class="page__bd">
+  <view class="product__image">
+    <swiper class="banner" indicator-dots="true" autoplay="true" interval="5000" duration="500">
+      <block wx:for="{{product.banner}}" wx:key="">
+        <swiper-item>
+          <navigator url="">
+            <image src="{{item.img_url}}" mode="widthFix" />
+          </navigator>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class="share">
+    <template is="modalView" data="{{...__modalView__}}" />
+    <poster id="poster" hide-loading="{{false}}" preload="{{false}}" config="{{posterConfig}}" bind:success="onPosterSuccess" bind:fail="onPosterFail"></poster>
+    <view catchtap="onCreatePoster">
+      <button>生成海报</button>
+    </view>
+  </view>
+  <view class="product">
+    <view class="product__price">
+      <span class="product__price-sale" wx:if="{{product.sale_price}}">
+        ￥{{ product.sale_price }}
+      </span>
+      <span class="product__price-regular" wx:if="{{product.sale_price}}">
+        ￥{{ product.price }}
+      </span>
+      <span class="product__price-sale" wx:if="{{!product.sale_price}}">￥{{ product.price }}</span>
+    </view>
+    <view class="product__name">{{ product.title }}</view>
+    <view class="tab">
+      <view class="tab__nav">
+        <block wx:for="{{ tapBarItems }}" wx:key="">
+          <view class="item {{item.active ? 'active' : ''}}" catchtap="onTapActive" id="{{item.id}}">
+            {{item.name}}
+          </view>
+        </block>
+      </view>
+      <view class="tab__panel">
+        <view class="product__description" wx:if="{{tapBarItems[0].active}}">
+          <block wx:for="{{product.body}}" wx:key="">
+            <image mode="widthFix" src="{{item.img_url}}" />
+          </block>
+        </view>
+        <view class="product__metas" wx:if="{{tapBarItems[1].active}}">
+          <block wx:for="{{product.metas}}">
+            <view>{{item.meta_key}}: {{item.meta_value}}</view>
+          </block>
+        </view>
+        <view class="product__comments" wx:if="{{tapBarItems[2].active}}">
+          <view class="comments" wx:if="{{!comments.length}}">暂无评价：）</view>
+          <view class="comments" wx:if="{{comments.length}}">
+            <view class="comment" wx:for="{{comments}}" wx:key="item.id">
+              <view class="comment__avatar">
+                <image class="comment__avatar_img" src="{{item.author_url}}" />
+              </view>
+              <view class="comment__content">
+                <text class="comment__content_author">{{ item.author_name }}</text>
+                <view class="comment__content_body">
+                  <rich-text nodes="{{item.content.rendered}}"></rich-text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="product__footer">
+  <navigator class="product__footer-home" url="/pages/cart/cart" open-type="reLaunch">
+    <view class="weui-badge">{{cartTotalCounts}}</view>
+    <image class="icon-cart" src="/image/icon/cart.png" />
+  </navigator>
+  <view class="product__footer-cart" bindtap="onAddingToCartTap">加入购物车</view>
+</view>

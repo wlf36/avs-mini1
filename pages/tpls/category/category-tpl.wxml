@@ -1,0 +1,13 @@
+<template name="categorydetail">
+    <view class="category-detail-box">
+        <view class="category-main">
+            <block wx:for="{{ products }}" wx:key="">
+                <view class="category-goods-items" data-id="{{ item.id }}" bindtap="onProductsItemTap">
+                    <image src="{{ item.thumbnail }}" mode="aspectFill"></image>
+                    <view>{{ item.title }}</view>
+                    <view class="product__price">￥{{ item.sale_price }}</view>
+                </view>
+            </block>
+        </view>
+    </view>
+</template>

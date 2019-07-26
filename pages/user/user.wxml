@@ -1,0 +1,92 @@
+<!-- pages/user/index.wxml -->
+<view class="userinfo">
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+</view>
+<view class="tab">
+    <view class="tab__nav">
+        <block wx:for="{{tapBarItems}}" wx:key="">
+            <view class="item {{item.active ? 'active' : ''}}" catchtap="onTapActive" id="{{item.id}}">
+                {{item.name}}
+            </view>
+        </block>
+    </view>
+    <view class="tab__panel">
+        <!-- 订单 -->
+        <view class="order" wx:if="{{tapBarItems[0].active}}">
+            <view wx:if="{{ ordersArr.length == 0 }}">暂无订单</view>
+            <view class="my-order">
+                <view class="item-main">
+                    <block wx:for="{{orderArr}}" wx:key="">
+                        <view class="order-item" data-orderno="{{item.order_no}}" bindtap="showOrderDetailInfo">
+                            <view class="order-header">
+                                <text>订单号:</text>
+                                <text class="order-no-txt">{{item.order_no}}</text>
+                            </view>
+                            <view class="order-main">
+                                <view class="item-left">
+                                    <image src="{{item.snap_img.img_url}}"></image>
+                                </view>
+                                <view class="item-middle">
+                                    <view>{{item.snap_name}}</view>
+                                    <view>{{item.total_count}}件商品</view>
+                                </view>
+                                <view class="item-right">{{item.status}}</view>
+                            </view>
+                            <view class="order-bottom" wx:if="{{item.status==='未付款'}}">
+                                <text>实付:￥{{item.total_price}}</text>
+                                <view class="pay" bindtap="rePay" data-id="{{item.id}}" data-index="{{index}}" data-order_no="{{item.order_no}}">
+                                    付款
+                                </view>
+                            </view>
+                        </view>
+                    </block>
+                </view>
+            </view>
+        </view>
+        <!-- 优惠券 -->
+        <view class="coupon" wx:if="{{tapBarItems[1].active}}">暂无优惠券</view>
+        <!-- 收货地址 -->
+        <view class="address" wx:if="{{tapBarItems[2].active}}">
+            <view class="my-address">
+                <block wx:if="{{address}}">
+                    <view class="item-title">
+                        地址管理
+                        <image src="../../image/icon/arrow@right.png"></image>
+                    </view>
+                    <block wx:for="{{address}}" wx:key="">
+                        <view class="contact-box">
+                            <view class="contact-box-checkbox" bindtap="editAddressStatus" data-id="{{ item.id }}">
+                                <image wx:if="{{item.status == 1}}" src="../../image/icon/circle@selected.png" />
+                                <image wx:else src="../../image/icon/circle@noselected.png" />
+                            </view>
+                            <view class="contact-box-info" bindtap="editAddress" data-id="{{ item.id }}">
+                                <view class="contact">
+                                    <view>
+                                        <image src="../../image/icon/user.png"></image>
+                                        <text class="val">{{item.userName}}</text>
+                                    </view>
+                                    <view class="mobile-box">
+                                        <image src="../../image/icon/mobile.png"></image>
+                                        <text class="val">{{item.telNumber}}</text>
+                                    </view>
+                                </view>
+                                <view class="detail">{{item.address}}</view>
+                            </view>
+                        </view>
+                    </block>
+                </block>
+                <block wx:else>
+                    <view class="add-new-address" bindtap="editAddress">
+                        <text class="icon">+</text>
+                        <text>添加地址</text>
+                    </view>
+                </block>
+            </view>
+        </view>
+        <!-- 授权设置 -->
+        <view class="user" wx:if="{{tapBarItems[3].active}}">
+            <button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权获取头像昵称</button>
+        </view>
+    </view>
+</view>
